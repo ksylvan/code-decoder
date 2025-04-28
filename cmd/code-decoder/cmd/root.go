@@ -156,16 +156,17 @@ PowerShell:
 	ValidArgs:             []string{"bash", "zsh", "fish", "powershell"},
 	Args:                  cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs),
 	Run: func(cmd *cobra.Command, args []string) {
-		switch args[0] {
-		case "bash":
-			cmd.Root().GenBashCompletion(os.Stdout)
-		case "zsh":
-			cmd.Root().GenZshCompletion(os.Stdout)
-		case "fish":
-			// Add 'true' to include descriptions for fish completion
-			cmd.Root().GenFishCompletion(os.Stdout, true)
-		case "powershell":
-			cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout)
+		shells := map[string]func(*cobra.Command, os.FileInfo){
+			"bash":       func(c *cobra.Command, f os.FileInfo) { c.GenBashCompletion(os.Stdout) },
+			"zsh":        func(c *cobra.Command, f os.FileInfo) { c.GenZshCompletion(os.Stdout) },
+			"fish":       func(c *cobra.Command, f os.FileInfo) { c.GenFishCompletion(os.Stdout, true) },
+			"powershell": func(c *cobra.Command, f os.FileInfo) { c.GenPowerShellCompletionWithDesc(os.Stdout) },
+		}
+		if gen := shells[args[0]]; gen != nil {
+			gen(cmd.Root(), nil)
+		} else {
+			fmt.Fprintf(os.Stderr, "Unknown shell: %s\n", args[0])
+			os.Exit(1)
 		}
 	},
 }
