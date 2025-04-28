@@ -41,8 +41,8 @@ func init() {
 	analyzeCmd.Flags().Int64("max-size", 0, "Maximum file size in bytes to include")
 	analyzeCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output")
 
-	// Mark save-analysis as required
-	analyzeCmd.MarkFlagRequired("save-analysis")
+	// Mark save-analysis as required - Commenting out to test completion behavior
+	// analyzeCmd.MarkFlagRequired("save-analysis")
 
 	// Ensure either --dir or --repo is provided, but not both
 	analyzeCmd.MarkFlagsMutuallyExclusive("dir", "repo")

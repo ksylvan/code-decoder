@@ -1,0 +1,19 @@
+# Example configuration for Code-Decoder
+# Copy this file to ~/.config/code-decoder/config.yaml or ./config.yaml
+# Or use the --config flag to specify a path
+
+llm:
+  provider: "openai" # Options: openai, anthropic, ollama, lmstudio
+  # api_key: "YOUR_API_KEY" # Add your API key here for cloud providers (openai, anthropic)
+  model: "gpt-4" # Specify the model to use
+  # endpoint: ""      # Only needed for local providers (ollama, lmstudio)
+
+defaults:
+  output_dir: "./tutorials"
+  language: "English"
+  audience: "developer"
+  # include: ["*.go", "*.js", "*.py"] # Patterns for files to include
+  # exclude: ["vendor/*", "node_modules/*"] # Patterns for files/dirs to exclude
+  # max_size: 1000000  # Max file size in bytes (1MB)
+# github:
+# token: "YOUR_GITHUB_TOKEN" # For accessing private repositories
