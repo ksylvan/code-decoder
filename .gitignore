@@ -28,5 +28,5 @@ go.work.sum
 .DS_Store
 
 # Binary file
-code-decoder
+./code-decoder
 bin/*
