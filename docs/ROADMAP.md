@@ -9,6 +9,7 @@ This roadmap tracks the implementation and testing progress for the features out
 | 1.2 Provide help/usage output for commands                  | ✅   | ☑️    |
 | 1.3 Implement config loading (flags, env, files)            | ✅   | ☑️    |
 | 1.4 Validate config & display errors                        | ✅   | ☑️    |
+| 1.5 Implement shell completion command                      | ✅   | ☑️    |
 ||||
 | **Phase 2: Source Management & File Listing**               |      |       |
 | 2.1 Implement `SourceManager` (dir/repo validation)         |      |       |

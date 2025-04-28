@@ -25,6 +25,7 @@ Establish a runnable CLI application with basic command structure and configurat
     - Config file in current directory
     - Config file in user’s home directory
 4. Validate configuration and display errors for missing or invalid settings.
+5. Implement a `completion` subcommand to generate shell completion scripts (Bash, Zsh, Fish, PowerShell).
 
 **Testability:**
 
@@ -32,6 +33,8 @@ Establish a runnable CLI application with basic command structure and configurat
 - Running each subcommand with `--help` shows usage information.
 - Configuration is loaded correctly from each source, with precedence respected.
 - Invalid or missing configuration results in clear error messages.
+- Running `completion [shell]` generates a valid script for the specified shell.
+- Shell completion works correctly for commands and flags (including custom completions like `--audience`).
 
 **Dependencies:**
 None (foundational phase).
