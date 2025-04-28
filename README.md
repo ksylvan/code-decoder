@@ -21,6 +21,7 @@ Code-Decoder transforms complex codebases into audience-targeted tutorials using
     - [Zsh](#zsh)
     - [Fish](#fish)
     - [PowerShell](#powershell)
+    - [Roadmap of Features](#roadmap-of-features)
   - [License](#license)
 
 ## Features
@@ -314,6 +315,10 @@ Then, add the following line to your PowerShell profile (find its location by ru
 ```powershell
 . "<path-to-your-directory>\code-decoder.ps1"
 ```
+
+### Roadmap of Features
+
+See the [Roadmap](./docs/ROADMAP.md) for upcoming planned features.
 
 ## License
 
