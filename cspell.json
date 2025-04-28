@@ -1,0 +1,16 @@
+{
+    "ignorePaths": [
+        ".gitignore"
+    ],
+    "words": [
+        "APIKEY",
+        "CODEDECODER",
+        "GOARCH",
+        "GOPATH",
+        "ksylvan",
+        "lmstudio",
+        "mapstructure",
+        "Ollama",
+        "testllm"
+    ]
+}
