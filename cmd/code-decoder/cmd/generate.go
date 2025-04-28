@@ -4,6 +4,7 @@ package cmd
 
 import (
 	"fmt"
+	"os" // Added for error handling in completion registration
 
 	"github.com/spf13/cobra"
 )
@@ -40,6 +41,16 @@ func init() {
 	generateCmd.Flags().String("save-analysis", "", "File path to save analysis results if analyzing a codebase directly")
 	generateCmd.Flags().String("provider", "", "Override the LLM provider specified in the config")
 	generateCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output")
+
+	// Register custom completion for the --audience flag
+	err := generateCmd.RegisterFlagCompletionFunc("audience", func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+		return []string{"beginner", "developer", "contributor"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	if err != nil {
+		// Handle error, e.g., log it or exit. Exiting is simple for init phase.
+		fmt.Fprintf(os.Stderr, "Error registering completion function for --audience: %v\n", err)
+		os.Exit(1)
+	}
 
 	// Ensure either load-analysis or one of (dir, repo) is provided
 	generateCmd.MarkFlagsMutuallyExclusive("load-analysis", "dir")
