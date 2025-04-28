@@ -50,7 +50,4 @@ func init() {
 
 	// TODO: Add logic to ensure that if --load-analysis is not used, then either --dir or --repo MUST be provided.
 	// This might require validation within the Run function or using PersistentPreRunE.
-
-	// TODO: Bind flags to Viper configuration for generate-specific overrides
-	// viper.BindPFlag("generate.audience", generateCmd.Flags().Lookup("audience"))
 }

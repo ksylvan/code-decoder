@@ -41,12 +41,6 @@ func init() {
 	analyzeCmd.Flags().Int64("max-size", 0, "Maximum file size in bytes to include")
 	analyzeCmd.Flags().BoolP("verbose", "v", false, "Enable verbose output")
 
-	// Mark save-analysis as required - Commenting out to test completion behavior
-	// analyzeCmd.MarkFlagRequired("save-analysis")
-
 	// Ensure either --dir or --repo is provided, but not both
 	analyzeCmd.MarkFlagsMutuallyExclusive("dir", "repo")
-
-	// TODO: Bind flags to Viper configuration for analyze-specific overrides if needed
-	// viper.BindPFlag("analyze.output", analyzeCmd.Flags().Lookup("save-analysis"))
 }

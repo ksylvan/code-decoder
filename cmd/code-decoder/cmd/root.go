@@ -27,14 +27,6 @@ var rootCmd = &cobra.Command{
 	Long: `Code-Decoder transforms complex codebases into audience-targeted tutorials using AI.
 It analyzes GitHub repositories or local directories, identifies core abstractions,
 and generates comprehensive, visualized documentation.`,
-	// If the version flag is set, print version and exit.
-	// PersistentPreRun removed as version check is now handled in main.go
-	// PersistentPreRun: func(cmd *cobra.Command, args []string) {
-	// 	if versionFlag {
-	// 		fmt.Printf("code-decoder version %s\n", appVersion)
-	// 		os.Exit(0)
-	// 	}
-	// },
 	// Run: func(cmd *cobra.Command, args []string) { }, // Keep commented out unless root command needs direct action
 }
 
@@ -57,15 +49,10 @@ func init() {
 
 	// Persistent flags (global for application)
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/code-decoder/config.yaml or ./config.yaml)")
-	// Version flag moved here to be persistent
 	rootCmd.PersistentFlags().BoolVarP(&versionFlag, "version", "V", false, "Print version information and exit")
 
 	// Add the completion command
 	rootCmd.AddCommand(completionCmd)
-
-	// Local flags (only run when root command is called directly without subcommands)
-	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	// rootCmd.Flags().BoolVarP(&versionFlag, "version", "V", false, "Print version information and exit") // Removed from here
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -103,10 +90,7 @@ func initConfig() {
 			if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
 				// Config file was found but another error was produced
 				fmt.Fprintf(os.Stderr, "Error reading config file (%s): %s\n", viper.ConfigFileUsed(), err)
-				// Decide if you want to exit here or just warn
-				// os.Exit(1)
 			}
-			// If it's ConfigFileNotFoundError, we just continue without setting configLoaded = true
 		}
 	}
 
@@ -123,14 +107,6 @@ func initConfig() {
 		fmt.Fprintln(os.Stderr, "Alternatively, specify a config file using the --config flag.")
 		os.Exit(1)
 	}
-
-	// Remove specific checks like LLM provider here if the goal is just to ensure *a* config is loaded.
-	// If specific keys are absolutely required even with env vars, add checks *after* AutomaticEnv()
-	// Example: Check if LLM provider is set (could come from file or ENV)
-	// if !viper.IsSet("llm.provider") {
-	//  fmt.Fprintln(os.Stderr, "Error: LLM provider ('llm.provider') must be set in config or environment variables.")
-	//  os.Exit(1)
-	// }
 }
 
 // completionCmd represents the completion command
