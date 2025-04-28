@@ -2,6 +2,28 @@
 
 Code-Decoder transforms complex codebases into audience-targeted tutorials using AI. It can analyze GitHub repositories or local directories, identify core abstractions and interactions, and generate comprehensive, visualized documentation tailored to different audiences.
 
+- [Code-Decoder: AI-Powered Codebase Tutorial Generator](#code-decoder-ai-powered-codebase-tutorial-generator)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Installation Options](#installation-options)
+      - [Option 1: Install from source](#option-1-install-from-source)
+      - [Option 2: Install directly from the GitHub repo](#option-2-install-directly-from-the-github-repo)
+      - [Option 3: Docker](#option-3-docker)
+    - [Post-Installation Setup](#post-installation-setup)
+  - [Usage Guide](#usage-guide)
+    - [Detailed Command Documentation](#detailed-command-documentation)
+      - [Analyze Command](#analyze-command)
+      - [Generate Command](#generate-command)
+      - [Test-LLM Command](#test-llm-command)
+  - [Shell Completion](#shell-completion)
+    - [Bash](#bash)
+    - [Zsh](#zsh)
+    - [Fish](#fish)
+    - [PowerShell](#powershell)
+  - [License](#license)
+
+
 ## Features
 
 - Analyze GitHub repositories or local codebases
@@ -206,6 +228,92 @@ code-decoder test-llm
 
 # Test a specific provider
 code-decoder test-llm --provider openai
+```
+
+## Shell Completion
+
+`code-decoder` provides shell completion support for Bash, Zsh, Fish, and PowerShell.
+
+To generate the completion script for your shell:
+
+```bash
+code-decoder completion [bash|zsh|fish|powershell]
+```
+
+Follow the instructions below for your specific shell:
+
+### Bash
+
+To load completions for the current session:
+
+```bash
+source <(code-decoder completion bash)
+```
+
+To load completions for each session, execute once:
+
+```bash
+# Linux:
+sudo code-decoder completion bash > /etc/bash_completion.d/code-decoder
+
+# macOS (using Homebrew):
+code-decoder completion bash > "$(brew --prefix)/etc/bash_completion.d/code-decoder"
+```
+
+### Zsh
+
+If shell completion is not already enabled in your environment, enable it by executing the following once:
+
+```zsh
+echo "autoload -U compinit; compinit" >> ~/.zshrc
+```
+
+To load completions for each session, execute once:
+
+```zsh
+# Ensure the completions directory exists (adjust path if necessary)
+mkdir -p ~/.zsh/completion
+code-decoder completion zsh > ~/.zsh/completion/_code-decoder
+# Add the directory to your fpath in ~/.zshrc if it's not already there
+# e.g., fpath=(~/.zsh/completion $fpath)
+```
+
+You will need to start a new shell for this setup to take effect.
+
+Alternatively, if you use a framework like Oh My Zsh, you might place the completion file in its custom completions directory (e.g., `~/.oh-my-zsh/custom/plugins/code-decoder/` and add `code-decoder` to your plugins list).
+
+### Fish
+
+To load completions for the current session:
+
+```fish
+code-decoder completion fish | source
+```
+
+To load completions for each session, execute once:
+
+```fish
+code-decoder completion fish > ~/.config/fish/completions/code-decoder.fish
+```
+
+### PowerShell
+
+To load completions for the current session:
+
+```powershell
+code-decoder completion powershell | Out-String | Invoke-Expression
+```
+
+To load completions for every new session, run:
+
+```powershell
+code-decoder completion powershell > code-decoder.ps1
+```
+
+Then, add the following line to your PowerShell profile (find its location by running `$profile`):
+
+```powershell
+. "<path-to-your-directory>\code-decoder.ps1"
 ```
 
 ## License
