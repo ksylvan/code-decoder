@@ -66,6 +66,32 @@ clean:
 	@rm -rf $(OUTPUT_DIR)
 	@echo "Clean complete."
 
+# Run tests
+.PHONY: test
+test:
+	@echo "Running tests..."
+	@go test ./...
+	@echo "Tests complete."
+
+# Run tests with coverage
+.PHONY: test-coverage
+test-coverage:
+	@echo "Running tests with coverage..."
+	@go test -coverprofile=coverage.out ./...
+	@go tool cover -html=coverage.out
+	@echo "Coverage report generated."
+
+# Run a specific test matching pattern
+.PHONY: test-one
+test-one:
+	@if [ -z "$(TEST)" ]; then \
+		echo "Please specify a test pattern with TEST=pattern"; \
+		exit 1; \
+	fi
+	@echo "Running tests matching pattern: $(TEST)"
+	@go test ./... -run $(TEST) -v
+	@echo "Tests complete."
+
 # Help target
 .PHONY: help
 help:
@@ -81,6 +107,9 @@ help:
 	@echo "  build-windows-arm64 Build for Windows (arm64)"
 	@echo "  all                   Build for all supported platforms"
 	@echo "  install               Install $(BINARY_NAME) using go install"
+	@echo "  test                  Run all tests"
+	@echo "  test-coverage         Run tests with coverage report"
+	@echo "  test-one              Run tests matching a pattern (use TEST=pattern)"
 	@echo "  clean                 Remove build artifacts from $(OUTPUT_DIR)/"
 	@echo "  help                  Show this help message"
 
