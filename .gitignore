@@ -32,3 +32,6 @@ bin/*
 
 # Config file should not leak
 ./config.yaml
+
+# Scratch files in tmp/
+tmp/
